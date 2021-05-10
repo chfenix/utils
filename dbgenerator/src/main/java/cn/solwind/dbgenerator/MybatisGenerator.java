@@ -1,0 +1,26 @@
+package cn.solwind.dbgenerator;
+
+import org.mybatis.generator.api.MyBatisGenerator;
+import org.mybatis.generator.config.Configuration;
+import org.mybatis.generator.config.xml.ConfigurationParser;
+
+import java.io.File;
+import java.util.ArrayList;
+import java.util.List;
+
+public class MybatisGenerator {
+    public static void main(String[] args) {
+        try {
+            List<String> warnings = new ArrayList<String>();
+            boolean overwrite = true;
+            File configFile = new File("mybatis-generator.xml");
+            ConfigurationParser cp = new ConfigurationParser(warnings);
+            Configuration config = cp.parseConfiguration(configFile);
+            MyShellCallback callback = new MyShellCallback(overwrite);
+            MyBatisGenerator myBatisGenerator = new MyBatisGenerator(config, callback, warnings);
+            myBatisGenerator.generate(null);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+}
