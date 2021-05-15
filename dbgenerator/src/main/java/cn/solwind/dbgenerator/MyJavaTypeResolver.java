@@ -19,6 +19,9 @@ public class MyJavaTypeResolver extends JavaTypeResolverDefaultImpl  {
         super();
         // SMALLINT -> Integer
         super.typeMap.put(Types.SMALLINT, new JdbcTypeInformation("SMALLINT", new FullyQualifiedJavaType(Integer.class.getName())));
+        // TINYINT -> Integer
+        super.typeMap.put(Types.TINYINT, new JdbcTypeInformation("TINYINT", new FullyQualifiedJavaType(Integer.class.getName())));
+
 
     }
 }
