@@ -20,23 +20,21 @@ public class BeanOperateUtil {
         for (int i = 0; i < field.length; i++) {
             {     //遍历所有属性
                 String name = field[i].getName();    //获取属性的名字
+                String proName = name;
                 //将属性的首字符大写，方便构造get，set方法
                 name = name.substring(0, 1).toUpperCase() + name.substring(1);
                 String type = field[i].getGenericType().toString();    //获取属性的类型
-                if (type.equals("class java.lang.String")) {   //如果type是字符串类型
-                    try {
-                        Method mGet = source.getClass().getMethod("get" + name);
-                        String value = (String) mGet.invoke(source);    //调用getter方法获取属性值
-                        if (value == null) {
-                            emptyNames.add(name);
-                        }
-                    } catch (NoSuchMethodException e) {
-                        e.printStackTrace();
-                    } catch (IllegalAccessException e) {
-                        e.printStackTrace();
-                    } catch (InvocationTargetException e) {
-                        e.printStackTrace();
+                try {
+                    Method mGet = source.getClass().getMethod("get" + name);
+                    if (mGet.invoke(source) == null) {
+                        emptyNames.add(proName);
                     }
+                } catch (NoSuchMethodException e) {
+                    e.printStackTrace();
+                } catch (IllegalAccessException e) {
+                    e.printStackTrace();
+                } catch (InvocationTargetException e) {
+                    e.printStackTrace();
                 }
             }
         }
