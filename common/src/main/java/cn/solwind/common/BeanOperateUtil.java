@@ -6,15 +6,21 @@ import java.lang.reflect.Method;
 import java.util.HashSet;
 import java.util.Set;
 
+/**
+ * Bean操作工具类
+ *
+ * @author zln
+ */
 public class BeanOperateUtil {
 
     /**
      * 获取所有字段为null的属性名
      * 用于BeanUtils.copyProperties()拷贝属性时，忽略空值
+     *
      * @param source
      * @return
      */
-    public static String[] getNullPropertyNames (Object source) {
+    public static String[] getNullPropertyNames(Object source) {
         Set<String> emptyNames = new HashSet<String>();
         Field[] field = source.getClass().getDeclaredFields();
         for (int i = 0; i < field.length; i++) {
@@ -44,10 +50,11 @@ public class BeanOperateUtil {
     }
 
     /**
- 　　* 将bean中空字符串设置为null
- 　　* @param [bean]
- 　　* @return void
- 　　*/
+     * 　　* 将bean中空字符串设置为null
+     * 　　* @param [bean]
+     * 　　* @return void
+     *
+     */
     public static <T> void emptyStrToNull(T bean) {
         Field[] field = bean.getClass().getDeclaredFields();
         for (int i = 0; i < field.length; i++) {
