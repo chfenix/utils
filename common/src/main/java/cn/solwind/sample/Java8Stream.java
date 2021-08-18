@@ -5,10 +5,9 @@ import org.apache.velocity.test.provider.Person;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Map;
-import java.util.Optional;
+import java.util.*;
+import java.util.function.BinaryOperator;
+import java.util.function.Function;
 import java.util.stream.Collectors;
 
 public class Java8Stream {
@@ -88,6 +87,17 @@ public class Java8Stream {
                         Collectors.reducing(BigDecimal.ZERO, Java8StreamDTO::getAmount, BigDecimal::add)));
         System.out.println(mapGroupSum2);
         System.out.println();
+
+        /**
+         * 分组取最大值
+         */
+        System.out.println("分组取最大值");
+        Map<String, Java8StreamDTO> mapGroupMax = listDTO.stream()
+                .collect(Collectors.toMap(Java8StreamDTO::getGroupKey, Function.identity(),
+                BinaryOperator.maxBy(Comparator.comparing(Java8StreamDTO::getBeginDate))));
+        System.out.println(mapGroupMax);
+        System.out.println();
+
 
     }
 
