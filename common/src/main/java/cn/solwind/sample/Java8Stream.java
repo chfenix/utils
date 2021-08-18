@@ -71,14 +71,22 @@ public class Java8Stream {
         System.out.println();
 
         /**
-         * 分组求和
+         * 分组求和1
          */
-        System.out.println("分组求和");
-        Map<Optional<String>,BigDecimal> mapGroupSum = listDTO.stream().collect(
+        System.out.println("分组求和1");
+        Map<Optional<String>,BigDecimal> mapGroupSum1 = listDTO.stream().collect(
                         Collectors.groupingBy(
                                 dto -> Optional.ofNullable(dto.getGroupKey()),
                                 Collectors.reducing(BigDecimal.ZERO, Java8StreamDTO::getAmount, BigDecimal::add)));
-        System.out.println(mapGroupSum);
+        System.out.println(mapGroupSum1);
+        System.out.println();
+
+        System.out.println("分组求和2");
+        Map<String,BigDecimal> mapGroupSum2 = listDTO.stream().collect(
+                Collectors.groupingBy(
+                        Java8StreamDTO::getGroupKey,
+                        Collectors.reducing(BigDecimal.ZERO, Java8StreamDTO::getAmount, BigDecimal::add)));
+        System.out.println(mapGroupSum2);
         System.out.println();
 
     }
