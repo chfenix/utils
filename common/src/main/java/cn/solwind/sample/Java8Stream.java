@@ -1,12 +1,14 @@
 package cn.solwind.sample;
 
 import org.apache.commons.beanutils.BeanUtils;
+import org.apache.velocity.test.provider.Person;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 public class Java8Stream {
@@ -58,6 +60,25 @@ public class Java8Stream {
         System.out.println("按照某一属性转Map，重复的覆盖");
         Map<String, Java8StreamDTO> listOneMap = listDTO.stream().collect(Collectors.toMap(Java8StreamDTO::getId, a -> a, (k1, k2) -> k1));
         System.out.println(listOneMap);
+        System.out.println();
+
+        /**
+         * 某属性求和
+         */
+        System.out.println("某属性求和");
+        BigDecimal totalRentArea = listDTO.stream().map(Java8StreamDTO::getAmount).reduce(BigDecimal.ZERO, BigDecimal::add);
+        System.out.println(totalRentArea);
+        System.out.println();
+
+        /**
+         * 分组求和
+         */
+        System.out.println("分组求和");
+        Map<Optional<String>,BigDecimal> mapGroupSum = listDTO.stream().collect(
+                        Collectors.groupingBy(
+                                dto -> Optional.ofNullable(dto.getGroupKey()),
+                                Collectors.reducing(BigDecimal.ZERO, Java8StreamDTO::getAmount, BigDecimal::add)));
+        System.out.println(mapGroupSum);
         System.out.println();
 
     }
