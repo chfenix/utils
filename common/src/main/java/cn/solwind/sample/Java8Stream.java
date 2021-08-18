@@ -98,6 +98,17 @@ public class Java8Stream {
         System.out.println(mapGroupMax);
         System.out.println();
 
+        /**
+         * 获取最大日期
+         */
+        System.out.println("获取最大日期");
+        LocalDate maxBeginDate = listDTO.stream()
+                .filter(o -> o.getBeginDate() != null)
+                .map(Java8StreamDTO::getBeginDate)
+                .distinct().max((e1, e2) -> e1.compareTo(e2)).get();
+        System.out.println(maxBeginDate);
+        System.out.println();
+
 
     }
 
