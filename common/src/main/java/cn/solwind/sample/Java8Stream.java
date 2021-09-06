@@ -56,17 +56,16 @@ public class Java8Stream {
         /**
          * 按照某一属性转Map，重复的覆盖
          */
-        System.out.println("按照某一属性转Map，重复的覆盖");
+        System.out.println("按照某一属性转Map，重复的保留第一个，可以修改k1,k2更改保留逻辑");
         Map<String, Java8StreamDTO> listOneMap = listDTO.stream().collect(Collectors.toMap(Java8StreamDTO::getId, a -> a, (k1, k2) -> k1));
         System.out.println(listOneMap);
         System.out.println();
 
         /**
          * 按照某几个属性组合作为Key转Map，重复的覆盖
-         * Map<String, Parts> partsMap = synList.stream().collect(Collectors.toMap(k -> k.getOe()+k.getOeId()+k.getPartGroupId()+k.getStdPartId()+k.getBrandCode(), part -> part));
          */
-        System.out.println("按照某几个属性组合作为Key转Map，重复的覆盖");
-        Map<String, Java8StreamDTO> listComboKeyOneMap = listDTO.stream().collect(Collectors.toMap(k -> k.getId() + "_" + k.getGroupKey(), part -> part));
+        System.out.println("按照某几个属性组合作为Key转Map，重复的保留第一个");
+        Map<String, Java8StreamDTO> listComboKeyOneMap = listDTO.stream().collect(Collectors.toMap(k -> k.getId() + "_" + k.getGroupKey(), a -> a, (k1, k2) -> k1));
         System.out.println(listComboKeyOneMap);
         System.out.println();
 
@@ -128,7 +127,8 @@ public class Java8Stream {
                 {"3", new BigDecimal(3), LocalDate.of(2021, 3, 1), LocalDate.of(2021, 3, 31), "1"},
                 {"4", new BigDecimal(4), LocalDate.of(2021, 4, 1), LocalDate.of(2021, 4, 30), "2"},
                 {"5", new BigDecimal(5), LocalDate.of(2021, 5, 1), LocalDate.of(2021, 5, 31), "1"},
-                {"1", new BigDecimal(6), LocalDate.of(2021, 6, 1), LocalDate.of(2021, 6, 30), "2"}
+                {"1", new BigDecimal(6), LocalDate.of(2021, 6, 1), LocalDate.of(2021, 6, 30), "2"},
+                {"1", new BigDecimal(7), LocalDate.of(2021, 6, 1), LocalDate.of(2021, 6, 30), "1"}
         };
 
         List<Java8StreamDTO> listDTO = new ArrayList<>();
