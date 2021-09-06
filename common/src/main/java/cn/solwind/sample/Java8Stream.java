@@ -62,6 +62,15 @@ public class Java8Stream {
         System.out.println();
 
         /**
+         * 按照某几个属性组合作为Key转Map，重复的覆盖
+         * Map<String, Parts> partsMap = synList.stream().collect(Collectors.toMap(k -> k.getOe()+k.getOeId()+k.getPartGroupId()+k.getStdPartId()+k.getBrandCode(), part -> part));
+         */
+        System.out.println("按照某几个属性组合作为Key转Map，重复的覆盖");
+        Map<String, Java8StreamDTO> listComboKeyOneMap = listDTO.stream().collect(Collectors.toMap(k -> k.getId() + "_" + k.getGroupKey(), part -> part));
+        System.out.println(listComboKeyOneMap);
+        System.out.println();
+
+        /**
          * 某属性求和
          */
         System.out.println("某属性求和");
