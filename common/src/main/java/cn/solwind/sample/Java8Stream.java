@@ -19,7 +19,7 @@ public class Java8Stream {
          * 提取DTO某一属性
          */
         System.out.println("提取DTO某一属性");
-        System.out.println(listDTO.stream().map(e -> Long.valueOf(e.getId())).collect(Collectors.toList()));
+        System.out.println(listDTO.stream().map(e ->e.getNullPro()).collect(Collectors.toList()));
         System.out.println();
 
         /**
@@ -65,8 +65,16 @@ public class Java8Stream {
          * 按照某几个属性组合作为Key转Map，重复的覆盖
          */
         System.out.println("按照某几个属性组合作为Key转Map，重复的保留第一个");
-        Map<String, Java8StreamDTO> listComboKeyOneMap = listDTO.stream().collect(Collectors.toMap(k -> k.getId() + "_" + k.getGroupKey(), a -> a, (k1, k2) -> k1));
+        Map<String, Java8StreamDTO> listComboKeyOneMap = listDTO.stream().collect(Collectors.toMap(k -> k.getId() + "_" + k.getGroupKey() + "_" + k.getBeginDate(), a -> a, (k1, k2) -> k1));
         System.out.println(listComboKeyOneMap);
+        System.out.println();
+
+        /**
+         * 按照某个属性转Map,Map Value为某个属性
+         */
+        System.out.println("按照某个属性转Map,Map Value为某个属性");
+        Map<String, BigDecimal> mapProToMap = listDTO.stream().collect(Collectors.toMap(Java8StreamDTO::getId, Java8StreamDTO::getAmount));
+        System.out.println(mapProToMap);
         System.out.println();
 
         /**
@@ -127,8 +135,8 @@ public class Java8Stream {
                 {"3", new BigDecimal(3), LocalDate.of(2021, 3, 1), LocalDate.of(2021, 3, 31), "1"},
                 {"4", new BigDecimal(4), LocalDate.of(2021, 4, 1), LocalDate.of(2021, 4, 30), "2"},
                 {"5", new BigDecimal(5), LocalDate.of(2021, 5, 1), LocalDate.of(2021, 5, 31), "1"},
-                {"1", new BigDecimal(6), LocalDate.of(2021, 6, 1), LocalDate.of(2021, 6, 30), "2"},
-                {"1", new BigDecimal(7), LocalDate.of(2021, 6, 1), LocalDate.of(2021, 6, 30), "1"}
+                {"6", new BigDecimal(6), LocalDate.of(2021, 6, 1), LocalDate.of(2021, 6, 30), "2"},
+                {"7", new BigDecimal(7), LocalDate.of(2021, 6, 1), LocalDate.of(2021, 6, 30), "1"}
         };
 
         List<Java8StreamDTO> listDTO = new ArrayList<>();
