@@ -15,6 +15,8 @@ public class Java8StreamDTO {
 
     private String groupKey;
 
+    private String nullPro;
+
     public Java8StreamDTO(Object[] initData) {
         this.id = (String)initData[0];
         this.amount = (BigDecimal)initData[1];
@@ -61,6 +63,14 @@ public class Java8StreamDTO {
 
     public void setGroupKey(String groupKey) {
         this.groupKey = groupKey;
+    }
+
+    public String getNullPro() {
+        return nullPro;
+    }
+
+    public void setNullPro(String nullPro) {
+        this.nullPro = nullPro;
     }
 
     @Override
