@@ -129,7 +129,9 @@ public class Java8Stream {
          * 计数
          */
         System.out.println("计数");
-        System.out.println(listDTO.stream().collect(Collectors.groupingBy(Java8StreamDTO::getGroupKey,Collectors.counting())));
+        Map<String,Long> mapGroupCount =
+            listDTO.stream().collect(Collectors.groupingBy(Java8StreamDTO::getGroupKey,Collectors.counting()));
+        System.out.println(mapGroupCount);
         System.out.println();
 
 
