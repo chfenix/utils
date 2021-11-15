@@ -16,10 +16,10 @@ public class Java8Stream {
         List<Java8StreamDTO> listDTO = init();
 
         /**
-         * 提取DTO某一属性
+         * 提取DTO某一属性，并去重
          */
         System.out.println("提取DTO某一属性");
-        System.out.println(listDTO.stream().map(e ->e.getNullPro()).collect(Collectors.toList()));
+        System.out.println(listDTO.stream().map(e ->e.getGroupKey()).distinct().collect(Collectors.toList()));
         System.out.println();
 
         /**
