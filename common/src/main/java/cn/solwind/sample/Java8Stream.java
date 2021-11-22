@@ -127,6 +127,7 @@ public class Java8Stream {
 
         /**
          * 计数
+         * 如key可能为空，可以修改为groupingBy(c -> Optional.ofNullable(c.getNullPro()),Collectors.counting()))
          */
         System.out.println("计数");
         Map<String,Long> mapGroupCount =
