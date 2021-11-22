@@ -135,6 +135,12 @@ public class Java8Stream {
         System.out.println(mapGroupCount);
         System.out.println();
 
+        /**
+         * List数据类型转换
+         */
+        System.out.println("List数据类型转换");
+        System.out.println(mapGroupSum1.keySet().stream().map(c -> c.get()).collect(Collectors.toList()));
+
 
     }
 
