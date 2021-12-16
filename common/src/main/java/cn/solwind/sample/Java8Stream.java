@@ -147,6 +147,26 @@ public class Java8Stream {
         System.out.println("对象中某个属性去重逗号拼接转String");
         System.out.println(listDTO.stream().map(Java8StreamDTO::getGroupKey).distinct().sorted().collect(Collectors.joining(",")));
 
+        /**
+         * List<Map> 转 Map
+         */
+        System.out.println("List<Map>转Map");
+        List<Map<String,String>> listMap1 = new ArrayList<>();
+        Map<String,String> map1 = new HashMap<>();
+        map1.put("key","k1");
+        map1.put("value","v1");
+        listMap1.add(map1);
+        Map<String,String> map2 = new HashMap<>();
+        map2.put("key","k2");
+        map2.put("value","v2");
+        listMap1.add(map2);
+
+        Map<String, String> convertMap = listMap1.stream()
+                .collect(Collectors.toMap(
+                        k -> k.get("key"),
+                        e -> e.get("value")
+                ));
+        System.out.println(convertMap);
     }
 
     private static List<Java8StreamDTO> init() {
