@@ -141,12 +141,17 @@ public class Java8Stream {
         System.out.println("List数据类型转换");
         System.out.println(mapGroupSum1.keySet().stream().map(c -> c.get()).collect(Collectors.toList()));
 
+        /**
+         * 对象中某个属性去重逗号拼接转String
+         */
+        System.out.println("对象中某个属性去重逗号拼接转String");
+        System.out.println(listDTO.stream().map(Java8StreamDTO::getGroupKey).distinct().sorted().collect(Collectors.joining(",")));
 
     }
 
     private static List<Java8StreamDTO> init() {
         Object[][] initData = new Object[][]{
-                {"1", new BigDecimal(1), LocalDate.of(2021, 1, 1), LocalDate.of(2021, 1, 31), "1"},
+                {"1", new BigDecimal(1), LocalDate.of(2021, 1, 1), LocalDate.of(2021, 1, 31), "2"},
                 {"2", new BigDecimal(2), LocalDate.of(2021, 2, 1), LocalDate.of(2021, 2, 28), "2"},
                 {"3", new BigDecimal(3), LocalDate.of(2021, 3, 1), LocalDate.of(2021, 3, 31), "1"},
                 {"4", new BigDecimal(4), LocalDate.of(2021, 4, 1), LocalDate.of(2021, 4, 30), "2"},
