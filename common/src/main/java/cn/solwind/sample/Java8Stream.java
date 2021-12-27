@@ -154,17 +154,17 @@ public class Java8Stream {
         List<Map<String,String>> listMap1 = new ArrayList<>();
         Map<String,String> map1 = new HashMap<>();
         map1.put("key","k1");
-        map1.put("value","v1");
+        map1.put("value","1");
         listMap1.add(map1);
         Map<String,String> map2 = new HashMap<>();
         map2.put("key","k2");
-        map2.put("value","v2");
+        map2.put("value","2");
         listMap1.add(map2);
 
-        Map<String, String> convertMap = listMap1.stream()
+        Map<String, BigDecimal> convertMap = listMap1.stream()
                 .collect(Collectors.toMap(
                         k -> k.get("key"),
-                        e -> e.get("value")
+                        e -> new BigDecimal(e.get("value"))
                 ));
         System.out.println(convertMap);
     }
