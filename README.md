@@ -9,3 +9,6 @@ Mybatis generator相关
 
 ### excelHelper
 基于POI的Excel操作工具包
+
+### 其他
+[mysql相关](./mysql.md)

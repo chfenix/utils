@@ -6,7 +6,7 @@ import java.time.temporal.ChronoUnit;
 public class LocalDateUtil {
 
     /**
-     * 获取两个日期中较早的那个
+     * 获取两个日期8efa762d83604fd8bb710496ccf825d1中较早的那个
      *
      * @param date1
      * @param date2
