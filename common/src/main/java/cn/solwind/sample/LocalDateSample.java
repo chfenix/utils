@@ -1,5 +1,7 @@
 package cn.solwind.sample;
 
+import cn.solwind.common.LocalDateUtil;
+
 import java.time.LocalDate;
 import java.time.temporal.TemporalAdjusters;
 
@@ -43,5 +45,7 @@ public class LocalDateSample {
         System.out.println("本月第一天：" + LocalDate.of(LocalDate.now().getYear(),LocalDate.now().getMonth(),1));
         System.out.println("本月最后一天：" + LocalDate.now().with(TemporalAdjusters.lastDayOfMonth()));
 
+        System.out.println(LocalDateUtil.formatDate(LocalDate.now(),"yyyy/MM/dd"));
+        System.out.println(LocalDateUtil.parseDate("2021-12-01"));
     }
 }
