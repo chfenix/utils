@@ -167,6 +167,19 @@ public class Java8Stream {
                         e -> new BigDecimal(e.get("value"))
                 ));
         System.out.println(convertMap);
+
+        /**
+         * 转换List为其他对象的List
+         */
+        System.out.println("转换List为其他对象的List");
+        List<Java8StreamDTO> result = listMap1.stream().map(temp -> {
+            Java8StreamDTO obj = new Java8StreamDTO();
+            obj.setGroupKey(temp.get("key"));
+            obj.setAmount(new BigDecimal(temp.get("value")));
+            return obj;
+        }).collect(Collectors.toList());
+        System.out.println(result);
+
     }
 
     private static List<Java8StreamDTO> init() {

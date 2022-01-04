@@ -17,6 +17,9 @@ public class Java8StreamDTO {
 
     private String nullPro;
 
+    public Java8StreamDTO() {
+    }
+
     public Java8StreamDTO(Object[] initData) {
         this.id = (String)initData[0];
         this.amount = (BigDecimal)initData[1];

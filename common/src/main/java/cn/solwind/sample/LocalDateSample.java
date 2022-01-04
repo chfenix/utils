@@ -47,5 +47,7 @@ public class LocalDateSample {
 
         System.out.println(LocalDateUtil.formatDate(LocalDate.now(),"yyyy/MM/dd"));
         System.out.println(LocalDateUtil.parseDate("2021-12-01"));
+
+        System.out.println("时间差" + LocalDateUtil.lengthOfDays(LocalDate.of(2021,11,10),LocalDate.of(2022,12,13)));
     }
 }
