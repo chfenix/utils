@@ -22,7 +22,7 @@
 
 ### MySQL GROUP BY 
 #### GROUP BY 某些字段获取最后一条
-```sql
+```roomsql
 SELECT
 `Id`,
 `Name`,
@@ -40,3 +40,28 @@ messages
 GROUP BY `Name`
 ```
 
+### 带条件UPDATE
+```roomsql
+-- 更新sql --
+UPDATE cost_order_total t
+JOIN (
+	SELECT
+		cot.id,
+		SUBSTRING_INDEX(GROUP_CONCAT(cir.item_rate ORDER BY cir.validate_start_time DESC SEPARATOR '||' ),
+			'||', 1 ) mall_tax,
+		SUBSTRING_INDEX(GROUP_CONCAT(c.rate ORDER BY b.validate_start_time DESC SEPARATOR '||' ),
+			'||',1 ) normal_tax
+	FROM
+		cost_order_total cot
+	JOIN cost_market_item cci ON cci.delete_flag = 0 AND cci.mall_code = cot.mall_code AND cci.cost_item_code = cot.cost_item_code
+	LEFT JOIN cost_market_item_rate_relation cir ON cci.id = cir.cost_market_item_id AND cir.validate_start_time <= cot.begin_time AND cir.company_code = cot.company_code
+	LEFT JOIN cost_item a ON a.Item_code = cot.cost_item_code AND a.delete_flag = 0
+	LEFT JOIN cost_item_rate_relation b ON a.id = b.cost_item_id
+	LEFT JOIN cost_rate_config c ON b.rate_config_id = c.id
+	GROUP BY cot.id
+) v_t ON t.id = v_t.id
+SET t.cost_rate = ifnull( v_t.mall_tax, v_t.normal_tax)
+WHERE	t.id = 690746
+
+
+```
