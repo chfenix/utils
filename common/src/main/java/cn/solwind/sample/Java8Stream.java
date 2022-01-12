@@ -180,13 +180,26 @@ public class Java8Stream {
         }).collect(Collectors.toList());
         System.out.println(result);
 
+        /**
+         * 排序
+         */
+        System.out.println("根据amount降序后再根据endDate降序排列");
+        listDTO.stream()
+                .sorted(Comparator.comparing(Java8StreamDTO::getAmount, Comparator.reverseOrder())
+                        .thenComparing(Java8StreamDTO::getEndDate, Comparator.reverseOrder()))
+                .collect(Collectors.toList()).forEach(
+                d -> {
+                    System.out.println(d);
+                }
+        );
+
     }
 
     private static List<Java8StreamDTO> init() {
         Object[][] initData = new Object[][]{
                 {"1", new BigDecimal(1), LocalDate.of(2021, 1, 1), LocalDate.of(2021, 1, 31), "2"},
                 {"2", new BigDecimal(2), LocalDate.of(2021, 2, 1), LocalDate.of(2021, 2, 28), "2"},
-                {"3", new BigDecimal(3), LocalDate.of(2021, 3, 1), LocalDate.of(2021, 3, 31), "1"},
+                {"3", new BigDecimal(7), LocalDate.of(2021, 3, 1), LocalDate.of(2021, 3, 31), "1"},
                 {"4", new BigDecimal(4), LocalDate.of(2021, 4, 1), LocalDate.of(2021, 4, 30), "2"},
                 {"5", new BigDecimal(5), LocalDate.of(2021, 5, 1), LocalDate.of(2021, 5, 31), "1"},
                 {"6", new BigDecimal(6), LocalDate.of(2021, 6, 1), LocalDate.of(2021, 6, 30), "2"},
