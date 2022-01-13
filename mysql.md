@@ -19,27 +19,21 @@
 `select unix_timestamp(date_sub(now(),interval 1 month));`
 #### 获取当前时间与上个月之间的天数
 `select datediff(curdate(), date_sub(curdate(), interval 1 month));`
-
+***
 ### MySQL GROUP BY 
 #### GROUP BY 某些字段获取最后一条
 ```roomsql
 SELECT
-`Id`,
-`Name`,
+Id,
+Name,
 SUBSTRING_INDEX(
-GROUP_CONCAT(
-`Other_Columns`
-ORDER BY `Id` DESC
-SEPARATOR '||'
-),
-'||',
-1
-) Other_Columns
+GROUP_CONCAT( Other_Columns ORDER BY Id DESC SEPARATOR '||' ),
+    '||', 1 ) Other_Columns
 FROM
 messages
-GROUP BY `Name`
+GROUP BY Name
 ```
-
+***
 ### 带条件UPDATE
 ```roomsql
 -- 更新sql --
