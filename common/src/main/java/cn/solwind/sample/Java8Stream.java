@@ -10,6 +10,9 @@ import java.util.function.BinaryOperator;
 import java.util.function.Function;
 import java.util.stream.Collectors;
 
+/**
+ * test
+ */
 public class Java8Stream {
 
     public static void main(String[] args) throws Exception {
