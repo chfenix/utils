@@ -14,7 +14,12 @@
 ### 字符串处理
 #### 多行拼接至一个单元格中，逗号分隔
 `TEXTJOIN(",",TRUE,OFFSET(A:A,0,,20))`
+
+#### 从右边查找字符并截取
+`=TRIM(RIGHT(SUBSTITUTE(E2,">",REPT(" ",LEN(E2))),LEN(E2)))`
+
 ***
 ### 单元格相关
 #### 动态获取某个单元格值
 `INDIRECT(CHAR(65+N1)&"7")`
+
