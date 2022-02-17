@@ -59,3 +59,14 @@ WHERE	t.id = 690746
 
 
 ```
+
+### 字符串处理
+#### 314>336>478>484 拆分为为4个字段
+```roomsql
+select category_directory_id,
+SUBSTRING_INDEX(category_directory_id, '>',  1) c1,
+SUBSTRING_INDEX(SUBSTRING_INDEX(category_directory_id,'>',2), '>', -1) c2,
+SUBSTRING_INDEX(SUBSTRING_INDEX(category_directory_id,'>',3), '>', -1) c3,
+SUBSTRING_INDEX(SUBSTRING_INDEX(category_directory_id,'>',4), '>', -1) c4
+from invest_brand_category where delete_flag=0
+```
