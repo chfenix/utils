@@ -70,3 +70,10 @@ SUBSTRING_INDEX(SUBSTRING_INDEX(category_directory_id,'>',3), '>', -1) c3,
 SUBSTRING_INDEX(SUBSTRING_INDEX(category_directory_id,'>',4), '>', -1) c4
 from invest_brand_category where delete_flag=0
 ```
+### insert into by select
+```roomsql
+INSERT INTO table2
+(column_name(s))
+SELECT column_name(s)
+FROM table1;
+```
