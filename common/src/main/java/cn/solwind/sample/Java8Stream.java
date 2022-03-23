@@ -38,7 +38,10 @@ public class Java8Stream {
          */
         System.out.println("按照某一属性汇总");
         List<Java8StreamDTO> listGroupDTO = listDTO.stream()
-                .collect(Collectors.toMap(k -> groupKey(k), a -> a, (o1, o2) -> {
+                .collect(Collectors.toMap(k -> groupKey(k),
+                        // 注意，如果mapKey对应的数据只有一个时，会执行a->a ，如需要修改数据，可以通过a-> { return a;}的方式进行操作
+                        a -> a,
+                        (o1, o2) -> {
                     o1.setAmount(o1.getAmount().add(o2.getAmount()));
                     o1.setBeginDate(o1.getBeginDate().isAfter(o2.getBeginDate()) ? o2.getBeginDate() : o1.getBeginDate());
                     o1.setEndDate(o1.getEndDate().isBefore(o2.getEndDate()) ? o2.getEndDate() : o1.getEndDate());
