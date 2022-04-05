@@ -1,4 +1,5 @@
 ### MySQL日期获取
+test
 #### 本月第一天
 `select date_add(curdate(), interval - day(curdate()) + 1 day);`
 #### 本月最后一天
